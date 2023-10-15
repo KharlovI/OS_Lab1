@@ -3,22 +3,18 @@
 #include <iostream>
 #include"Utility.h"
 #include "Timer.h"
+#include "Fx.h"
+#include "Gx.h"
+
 class Manager
 {
 private:
-	Result fx;	
-	Result gx;
-	int faultLimit;
-	int currentFaultCount = 0;
+	Fx f;
+	Gx g;
 	Timer* timer;
-
-
-	// METHODS
-	void IncrementFaultCount();
-	bool FaultLimitAchieved();
 public:
 	Manager(int faultLimit, int timeLimit);
-	void Compute(int x);
+	int Compute(int x);
 	Result GetTotalResult();
 	void Initialisation(int limit);
 	~Manager();

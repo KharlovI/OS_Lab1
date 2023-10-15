@@ -8,21 +8,29 @@ enum ERROR {
 
 class Constants {
 public:
-
+	static const int _timeSegmentsCount = 100;
 };
 
 class Result {
 public:
-	Result(ERROR error = ERROR::Null) { this->error = error; };
-	Result(int value, ERROR error = ERROR::Null) 
+	Result() {};
+	Result(int value, int limit, ERROR error = ERROR::Null) 
 	{
+		this->errorLimit = limit;
 		this->value = value;
 		this->error = error;		
 	}
 	int GetValue() { return value; }
 	ERROR GetError() { return error; }
-	void SetValue(int value) {this->value = value; }
+	int GetLimit() { return errorLimit; }
+	void IncrementErrorCount() { this->softErrorCount++; }
+	bool ErrorLimitAchiened() { return softErrorCount >= errorLimit; }
+	void SetValue(int v) { this->value = v; }
+	void SetError(ERROR e) { this->error = e; }
+	void SetLimit(int lim) { this->errorLimit = lim; }
 private:
 	ERROR error;
-	int value;
+	int value = 0;
+	int softErrorCount = 0;
+	int errorLimit = 0;
 };
