@@ -32,13 +32,13 @@ Result Fx::Compute(int x, const std::atomic<bool>& flag)
 			for (int i = 0; i < faultLimit; i++) {
 				if (rand() % 5 != 0) {
 					this->res.IncrementErrorCount();
-					std::cout << "Soft fault in f(x)\n";
+					std::cout << "Soft fault in f(" << x << ")\n";
 				}
 			}
 			if (res.ErrorLimitAchiened())
 			{
 				res.SetError(ERROR::Hard); 
-				std::cout << "Soft Fault limit has been achived if f(x)\n";
+				std::cout << "Soft Fault limit has been achived in f(" << x << ")\n";
 			}
 			else
 				res.SetValue(x / 2);

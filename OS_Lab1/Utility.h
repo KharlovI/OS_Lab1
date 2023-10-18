@@ -8,7 +8,7 @@ enum ERROR {
 
 class Constants {
 public:
-	static const int _timeSegmentsCount = 100;
+	static const int _timeSegmentsCount = 50;
 };
 
 class Result {

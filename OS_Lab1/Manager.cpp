@@ -10,6 +10,8 @@ Manager::Manager(int faultLimit, int timeLimit)
 
 int Manager::Compute(int x)
 {
+	if (memory.ContainElement(x))
+		return memory.GetOutput(x);
 	std::future<bool> futureTimerStart = std::async(&Timer::Start, timer);
 	std::atomic<bool> flag = ATOMIC_VAR_INIT(false);
 	std::future<Result> future1 = std::async(&Fx::Compute, f,  x, std::ref(flag));
@@ -27,17 +29,23 @@ int Manager::Compute(int x)
 	Result r2 = future2.get();	
 
 	if (r1.GetError() == ERROR::Hard) {
-		std::cout << "Fatal fault in function f(x)\n";
+		std::cout << "Fatal fault in function f(" << x << ")\n";
 		return -1;
 	}
 	if(r2.GetError() == ERROR::Hard) {
-		std::cout << "Fatal fault in function f(x)\n";
+		std::cout << "Fatal fault in function g(" << x << ")\n";
 		return -2;
 	}
-	if (r1.GetValue() > r2.GetValue())
+	std::cout << x << std::endl;
+	if (r1.GetValue() > r2.GetValue()) {
+		memory.AddPair(x, 1);
 		return 1;
-	if (r1.GetValue() < r2.GetValue())
+	}
+	if (r1.GetValue() < r2.GetValue()) {
+		memory.AddPair(x, 2);
 		return 2;
+	}
+	memory.AddPair(x, 0);
 	return 0;
 }
 

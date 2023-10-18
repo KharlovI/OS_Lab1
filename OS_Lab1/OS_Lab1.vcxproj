@@ -143,6 +143,7 @@
     <ClCompile Include="Fx.cpp" />
     <ClCompile Include="Gx.cpp" />
     <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="Memory.cpp" />
     <ClCompile Include="OS_Lab1.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
@@ -151,8 +152,12 @@
     <ClInclude Include="Fx.h" />
     <ClInclude Include="Gx.h" />
     <ClInclude Include="Manager.h" />
+    <ClInclude Include="Memory.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Memory.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
