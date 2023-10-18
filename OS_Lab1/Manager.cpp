@@ -1,13 +1,8 @@
 #include "Manager.h"
 #include <chrono>
-
-Manager::Manager(int faultLimit, int timeLimit)
+Manager::Manager()
 {
-	this->timer = new Timer(timeLimit);
-	this->g.SetFaultLimit(faultLimit);
-	this->f.SetFaultLimit(faultLimit);
 }
-
 int Manager::Compute(int x)
 {
 	if (memory.ContainElement(x))
@@ -16,7 +11,7 @@ int Manager::Compute(int x)
 	std::atomic<bool> flag = ATOMIC_VAR_INIT(false);
 	std::future<Result> future1 = std::async(&Fx::Compute, f,  x, std::ref(flag));
 	std::future<Result> future2 = std::async(&Gx::Compute, g,  x, std::ref(flag));
-	while((future1._Is_ready() == false && future2._Is_ready() == false) && (futureTimerStart._Is_ready() == false)) {
+	while((future1._Is_ready() == false || future2._Is_ready() == false) && (futureTimerStart._Is_ready() == false)) {
 		
 	}
 	if (futureTimerStart._Is_ready()) {
@@ -36,7 +31,6 @@ int Manager::Compute(int x)
 		std::cout << "Fatal fault in function g(" << x << ")\n";
 		return -2;
 	}
-	std::cout << x << std::endl;
 	if (r1.GetValue() > r2.GetValue()) {
 		memory.AddPair(x, 1);
 		return 1;
@@ -49,15 +43,11 @@ int Manager::Compute(int x)
 	return 0;
 }
 
-Result Manager::GetTotalResult()
+void Manager::Initialisation(int timeLimit, int faultLimit)
 {
-	return Result();
-}
-
-void Manager::Initialisation(int limit)
-{
-	//f.SetFaultsLimit(limit);
-	//g.SetFaultsLimit(limit);
+	this->timer = new Timer(timeLimit);
+	this->g.SetFaultLimit(faultLimit);
+	this->f.SetFaultLimit(faultLimit);
 }
 
 Manager::~Manager()

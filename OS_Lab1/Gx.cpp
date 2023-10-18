@@ -7,9 +7,7 @@ Gx::Gx()
 
 Result Gx::Compute(int x, const std::atomic<bool>& flag)
 {
-	srand(time(0));
-	std::cout << "G start" << std::endl;
-	
+	srand(time(0));	
 	if (x % 7 == 0) {
 		try {
 			for (int i = 0; i < Constants::_timeSegmentsCount; i++) {
@@ -47,7 +45,6 @@ Result Gx::Compute(int x, const std::atomic<bool>& flag)
 				for (int i = 0; i < faultLimit; i++) {
 					if (rand() % 3 != 0) {
 						this->res.IncrementErrorCount();
-						std::cout << "Soft fault in g(" << x << ")\n";
 					}
 				}
 			}
@@ -62,8 +59,6 @@ Result Gx::Compute(int x, const std::atomic<bool>& flag)
 			res = Result(0, ERROR::Hard);
 		}
 	}
-
-	std::cout << "G finish" << std::endl;
 	return res;
 }
 

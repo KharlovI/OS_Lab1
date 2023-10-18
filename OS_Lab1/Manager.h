@@ -14,9 +14,8 @@ private:
 	Timer* timer;
 	Memory memory = Memory();
 public:
-	Manager(int faultLimit, int timeLimit);
+	Manager();
 	int Compute(int x);
-	Result GetTotalResult();
-	void Initialisation(int limit);
+	void Initialisation(int timeLimit, int faultLimit);
 	~Manager();
 };

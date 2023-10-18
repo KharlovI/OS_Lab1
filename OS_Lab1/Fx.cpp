@@ -8,7 +8,6 @@ Fx::Fx()
 Result Fx::Compute(int x, const std::atomic<bool>& flag)
 {
 	srand(time(0));
-	std::cout << "F start" << std::endl;
 	if (x % 5 == 0) {
 		try {
 			for (int i = 0; i < Constants::_timeSegmentsCount; i++) {
@@ -32,7 +31,6 @@ Result Fx::Compute(int x, const std::atomic<bool>& flag)
 			for (int i = 0; i < faultLimit; i++) {
 				if (rand() % 5 != 0) {
 					this->res.IncrementErrorCount();
-					std::cout << "Soft fault in f(" << x << ")\n";
 				}
 			}
 			if (res.ErrorLimitAchiened())
@@ -60,7 +58,6 @@ Result Fx::Compute(int x, const std::atomic<bool>& flag)
 			res = Result(0, ERROR::Hard);
 		}
 	}
-	std::cout << "F finish" << std::endl;
 	return res;
 }
 
