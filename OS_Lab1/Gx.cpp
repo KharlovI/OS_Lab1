@@ -5,10 +5,10 @@ Gx::Gx()
 {
 }
 
-Result Gx::Compute(int x, const std::atomic<bool>& flag)
+Result Gx::Compute(float x, const std::atomic<bool>& flag)
 {
 	srand(time(0));	
-	if (x % 7 == 0) {
+	if ((int)x % 7 == 0) {
 		try {
 			for (int i = 0; i < Constants::_timeSegmentsCount; i++) {
 				std::this_thread::sleep_for(std::chrono::milliseconds(60));
@@ -21,7 +21,7 @@ Result Gx::Compute(int x, const std::atomic<bool>& flag)
 		}
 		res.SetError(ERROR::Hard);
 	}
-	else if (x % 2 == 0) {
+	else if ((int)x % 2 == 0) {
 		try {
 			for (int i = 0; i < Constants::_timeSegmentsCount; i++) {
 				std::this_thread::sleep_for(std::chrono::milliseconds(30));

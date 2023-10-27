@@ -3,7 +3,7 @@
 Manager::Manager()
 {
 }
-int Manager::Compute(int x)
+int Manager::Compute(float x)
 {
 	if (memory.ContainElement(x))
 		return memory.GetOutput(x);

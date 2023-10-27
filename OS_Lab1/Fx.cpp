@@ -5,10 +5,10 @@ Fx::Fx()
 {
 }
 
-Result Fx::Compute(int x, const std::atomic<bool>& flag)
+Result Fx::Compute(float x, const std::atomic<bool>& flag)
 {
 	srand(time(0));
-	if (x % 5 == 0) {
+	if (int(x) % 5 == 0) {
 		try {
 			for (int i = 0; i < Constants::_timeSegmentsCount; i++) {
 				std::this_thread::sleep_for(std::chrono::milliseconds(15));
@@ -21,7 +21,7 @@ Result Fx::Compute(int x, const std::atomic<bool>& flag)
 		}
 		res.SetError(ERROR::Hard);
 	}
-	else if (x % 2 == 0) {
+	else if (int(x) % 2 == 0) {
 		try {
 			for (int i = 0; i < Constants::_timeSegmentsCount; i++) {
 				std::this_thread::sleep_for(std::chrono::milliseconds(45));

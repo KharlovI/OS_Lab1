@@ -5,7 +5,7 @@ class Fx : public Function
 {
 public:
 	Fx();
-	Result Compute(int x, const std::atomic<bool>& flag) override;
+	Result Compute(float x, const std::atomic<bool>& flag) override;
 	void SetFunctionName() override;
 };
 

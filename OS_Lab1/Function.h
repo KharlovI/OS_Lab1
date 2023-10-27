@@ -5,7 +5,7 @@
 class Function
 {
 public:
-	virtual Result Compute(int x, const std::atomic<bool>& flag);
+	virtual Result Compute(float x, const std::atomic<bool>& flag);
 	virtual void SetFunctionName();	
 	void SetFaultLimit(int limit);
 	Result GetResult();

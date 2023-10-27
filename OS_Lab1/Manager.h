@@ -15,7 +15,7 @@ private:
 	Memory memory = Memory();
 public:
 	Manager();
-	int Compute(int x);
+	int Compute(float x);
 	void Initialisation(int timeLimit, int faultLimit);
 	~Manager();
 };

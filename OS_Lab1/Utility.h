@@ -14,7 +14,7 @@ public:
 class Result {
 public:
 	Result() {};
-	Result(int value, int limit, ERROR error = ERROR::Null) 
+	Result(float value, int limit, ERROR error = ERROR::Null) 
 	{
 		this->errorLimit = limit;
 		this->value = value;
@@ -25,12 +25,12 @@ public:
 	int GetLimit() { return errorLimit; }
 	void IncrementErrorCount() { this->softErrorCount++; }
 	bool ErrorLimitAchiened() { return softErrorCount >= errorLimit; }
-	void SetValue(int v) { this->value = v; }
+	void SetValue(float v) { this->value = v; }
 	void SetError(ERROR e) { this->error = e; }
 	void SetLimit(int lim) { this->errorLimit = lim; }
 private:
 	ERROR error;
-	int value = 0;
+	float value = 0;
 	int softErrorCount = 0;
 	int errorLimit = 0;
 };

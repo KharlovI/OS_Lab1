@@ -1,6 +1,6 @@
 #include "Function.h"
 
-Result Function::Compute(int x, const std::atomic<bool>& flag)
+Result Function::Compute(float x, const std::atomic<bool>& flag)
 {
 	// Empty function
 	return Result();
